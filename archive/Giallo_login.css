@@ -1,0 +1,98 @@
+#loginPage {
+  position: relative;  /* needed for ::before */
+  height: 100vh;
+  overflow: hidden;
+  background: none !important;
+  z-index: 1; /* ensure above pseudo-element */
+}
+
+/* blurred background overlay */
+#loginPage::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: url("https://corp.giallovision.com/images/IEP_Mini_W.png") no-repeat center center fixed;
+  background-size: cover;
+  filter: blur(48px);
+  opacity: 0.35;
+  pointer-events: none;
+  z-index: 0; /* behind everything */
+}
+
+/* keep your big logo on top */
+.pageTitleWithLogo.pageTitleWithDefaultLogo,
+.header .pageTitleWithLogo.pageTitleWithDefaultLogo {
+  background-image: url("https://corp.giallovision.com/images/IEP_BY.png") !important;
+  background-repeat: no-repeat !important;
+  background-size: contain !important;
+  text-indent: -9999px;
+  width: 800px;
+  height: 212px;
+  display: block;
+  margin: 0 auto 20px auto;
+  position: relative;
+  top: 0;
+  z-index: 10; /* ensure logo is above background */
+}
+
+/* Push login form down so it doesn't overlap the logo */
+#loginPage form {
+  margin-top: 270px;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 2em 3em;
+  background: rgba(0, 0, 0, 0.35);  /* translucent black */
+  border-radius: var(--rounding);
+  box-shadow: 0 0 15px rgba(0,0,0,0.6);
+}
+
+/* Hide distracting buttons/text on login */
+#loginPage h1,
+#loginPage .raised.cancel.block.btnForgotPassword.emby-button,
+#loginPage .loginHeader,
+#loginPage .readOnlyContent {
+  display: none !important;
+}
+
+/* Header bar background color matching your logo black */
+.skinHeader {
+  background-color: #111111 !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+}
+
+/* Make sure login form fields are white text on dark translucent background */
+#loginPage input,
+#loginPage label,
+#loginPage button {
+  color: white !important;
+}
+
+/* Optional: style buttons to your color scheme */
+#loginPage button {
+  background-color: #E5BE1C !important; /* Gold-ish */
+  border: none !important;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#loginPage button:hover {
+  background-color: #E5BE1C !important; /* Slightly darker gold */
+}
+
+/* Center login form vertically and horizontally on larger screens */
+@media (min-width: 768px) {
+  #loginPage form {
+    position: relative;
+    top: 0;
+  }
+}
+
+/* Highlight focused inputs with gold (#E5BE1C) */
+.emby-input:focus {
+  border-color: yellow !important;
+  box-shadow: 0 0 6px yellow !important;
+}
+

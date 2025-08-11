@@ -1,0 +1,137 @@
+@import url('https://corp.giallovision.com/css/Roboto_ff.css');
+
+/* Ensure the entire background is #111111 */
+html, body {
+  height: 100%;
+  margin: 0;
+  background-color: #111111 !important; /* Ensure no other background */
+  overflow-x: hidden; /* Avoid horizontal scroll */
+}
+
+#loginPage {
+  position: relative;  /* needed for ::before */
+  height: 100vh;
+  overflow: hidden;
+  background: none !important;
+  z-index: 1; /* ensure above pseudo-element */
+}
+
+/* Base background image, unblurred, fixed */
+#loginPage::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: url("https://corp.giallovision.com/images/IEP_Mini_W.png") no-repeat center center fixed;
+  background-size: cover;
+  background-color: #111111;
+  z-index: 0;
+  /* smooth translation rendering */
+  will-change: transform;
+  backface-visibility: hidden;
+  transform: translateX(42px) translateY(-42px);
+}
+
+/* Frosted blur overlay with backdrop-filter */
+#loginPage::after {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-color: #111111;
+  backdrop-filter: blur(48px); /* smooth blur */
+  -webkit-backdrop-filter: blur(48px); /* Safari support */
+  z-index: 1;
+  pointer-events: none;
+  transform: translateX(42px) translateY(-42px);
+  
+  /* Mask to create a gradual blur effect */
+  mask-image: radial-gradient(circle,
+    rgba(0,0,0,0.5) 40%,  /* center - no mask, less blur */
+    rgba(0,0,0,0.75) 60%,  /* slightly blurry area */
+    rgba(0,0,0,0.9) 80%,  /* more blurred edges */
+    rgba(0,0,0,1) 100%);  /* fully masked edges */
+  -webkit-mask-image: radial-gradient(circle,
+    rgba(0,0,0,0.5) 40%,
+    rgba(0,0,0,0.75) 60%,
+    rgba(0,0,0,0.9) 80%,
+    rgba(0,0,0,1) 100%);
+}
+
+/* keep your big logo on top, making it same size as homepage banner */
+.pageTitleWithLogo.pageTitleWithDefaultLogo,
+.header .pageTitleWithLogo.pageTitleWithDefaultLogo {
+  background-image: url("https://corp.giallovision.com/images/IEP_Full_W.png") !important;
+  background-repeat: no-repeat !important;
+  background-size: contain !important;
+  background-color: #111111;
+  text-indent: -9999px;
+  width: 400px; /* Same width as homepage logo */
+  height: 106px; /* Maintain height at 106px */
+  display: block;
+  margin: 0 auto 20px auto;
+  position: relative;
+  top: 0;
+  z-index: 10; /* ensure logo is above background */
+}
+
+/* Push login form down so it doesn't overlap the logo */
+#loginPage form {
+  margin-top: 270px;
+  max-width: 400px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 2em 3em;
+  background: rgba(0, 0, 0, 0.8);  /* translucent black */
+  border-radius: var(--rounding);
+  box-shadow: 0 0 32px rgba(0,0,0,0.8);
+  z-index: 10;
+}
+
+/* Hide distracting buttons/text on login */
+#loginPage h1,
+#loginPage .raised.cancel.block.btnForgotPassword.emby-button,
+#loginPage .loginHeader,
+#loginPage .readOnlyContent {
+  display: none !important;
+}
+
+/* Header bar background color matching your logo black */
+.skinHeader {
+  background-color: #111111 !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  opacity: 1 !important;
+}
+
+/* Make sure login form fields are white text on dark translucent background */
+#loginPage input,
+#loginPage label,
+#loginPage button {
+  color: white !important;
+}
+
+/* Optional: style buttons to your color scheme */
+#loginPage button {
+  background-color: #E5BE1C !important; /* Gold-ish */
+  border: none !important;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+#loginPage button:hover {
+  background-color: #E5BE1C !important; /* Slightly darker gold */
+}
+
+/* Center login form vertically and horizontally on larger screens */
+@media (min-width: 768px) {
+  #loginPage form {
+    position: relative;
+    top: 0;
+  }
+}
+
+/* Highlight focused inputs with gold (#E5BE1C) */
+.emby-input:focus {
+  border-color: yellow !important;
+  box-shadow: 0 0 12px yellow !important;
+}

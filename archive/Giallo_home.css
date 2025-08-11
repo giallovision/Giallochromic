@@ -1,0 +1,66 @@
+/* ===== HOMEPAGE BRANDING ===== */
+
+/* Target only the homepage */
+.page.homePage {
+    position: relative;
+    background: none !important;
+    z-index: 1;
+}
+
+/* Blurred background overlay like login page */
+.page.homePage::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: url("https://corp.giallovision.com/images/IEP_Mini_W.png") no-repeat center center fixed;
+    background-size: cover;
+    filter: blur(48px);
+    opacity: 0.35;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Smaller, centered logo above media libraries */
+.page.homePage .pageTitleWithLogo.pageTitleWithDefaultLogo,
+.page.homePage .header .pageTitleWithLogo.pageTitleWithDefaultLogo {
+    background-image: url("https://corp.giallovision.com/images/IEP_BY.png") !important;
+    background-repeat: no-repeat !important;
+    background-size: contain !important;
+    text-indent: -9999px;
+    width: 400px;   /* Smaller than login */
+    height: 106px;  /* proportional to width */
+    display: block;
+    margin: 0 auto 20px auto;
+    position: relative;
+    top: 0;
+    z-index: 10;
+}
+
+/* Push the media library grid down so it doesn't overlap logo */
+.page.homePage .section0 {
+    margin-top: 150px; /* adjust for space under logo */
+}
+
+/* Optional: smaller blurred "ghost" logo behind main logo */
+.page.homePage .pageTitleWithLogo.pageTitleWithDefaultLogo::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background-image: url("https://corp.giallovision.com/images/IEP_BY.png");
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 600px;
+    height: 160px;
+    filter: blur(20px) opacity(0.15);
+    z-index: -1;
+}
+
+/* Keep header bar black for consistency */
+.skinHeader {
+    background-color: #111111 !important;
+    border-bottom: none !important;
+    box-shadow: none !important;
+    backdrop-filter: none !important;
+}
